@@ -5,7 +5,6 @@
 #include <Geode/utils/async.hpp>
 #include <Geode/utils/web.hpp>
 #include <Geode/utils/base64.hpp>
-#include <matjson.hpp>
 
 using namespace cocos2d;
 
@@ -106,5 +105,40 @@ public:
 
         delete ret;
         return nullptr;
+    }
+
+    void refreshAccessToken() {
+        geode::log::debug("Request Recieved");        
+
+        std::string clientID = geode::Mod::get()->getSettingValue<std::string>("clid");
+        std::string clientSecret = geode::Mod::get()->getSettingValue<std::string>("clsec");
+        std::string refreshToken = geode::Mod::get()->getSettingValue<std::string>("reftoken");
+
+        std::string rawAuthToken = clientID + ":" + clientSecret;
+
+        std::string authToken = geode::utils::base64::encode( rawAuthToken, geode::utils::base64::Base64Variant::Normal);
+
+        auto req = geode::utils::web::WebRequest();
+
+        req.header("Authorization", "Basic " + authToken);
+        req.header("Content-Type", "application/x-www-form-urlencoded");
+
+        std::string body = "grant_type=refresh_token&refresh_token=" + refreshToken;
+
+        req.bodyString(body);
+
+        geode::async::spawn(
+            req.post("https://accounts.spotify.com/api/token"),
+            [](geode::utils::web::WebResponse res) {
+                if (res.ok()) {
+                    geode::Mod::get()->setSettingValue("accesstoken", res.json().unwrap()["access_token"].asString().unwrap());
+                    geode::log::info("Access Token Refreshed");
+                } else {
+                    geode::log::info("Error: {}", res.string().unwrap());
+                }
+            }
+        );
+
+        return;
     }
 };

@@ -19,6 +19,11 @@ class $modify(SpotiMainMenu, MenuLayer) {
 
         if (!Mod::get()->getSavedValue<bool>("first-setup-done")) {
             StartingPopup::create()->show();
+        } else if (Mod::get()->getSavedValue<bool>("first-setup-done")) {
+            geode::log::info("Refreshing Access Token");
+
+            StartingPopup sp;
+            sp.refreshAccessToken();
         }
     }
 };
