@@ -19,7 +19,7 @@ protected:
         async::spawn(
             req.put("https://api.spotify.com/v1/me/player/pause", Mod::get()),
             [](web::WebResponse res) {
-                if (res.ok()) {
+                if (res.code() == 200) {
                     log::info("Spotify Paused");
                     return true;
                 }
@@ -40,7 +40,7 @@ protected:
         async::spawn(
             req.put("https://api.spotify.com/v1/me/player/play", Mod::get()),
             [](web::WebResponse res) {
-                if (res.ok()) {
+                if (res.code() == 200) {
                     log::info("Spotify Resumed");
                     return true;
                 }

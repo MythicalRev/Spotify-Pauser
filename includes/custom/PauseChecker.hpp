@@ -13,7 +13,7 @@ protected:
     bool checkForPause() {
         if (Mod::get()->getSavedValue<bool>("skip-pause-check")) {
             Mod::get()->setSavedValue<bool>("skip-pause-check", false);
-            } else {
+        } else {
             auto req = web::WebRequest();
             req.header("Authorization", "Bearer " + m_accessToken);
             req.header("Content-Length", "0");
@@ -22,7 +22,7 @@ protected:
             async::spawn(
                 req.get("https://api.spotify.com/v1/me/player"),
                 [](web::WebResponse res) {
-                    if (res.ok()) {
+                    if (res.code() == 200) {
                         if (res.json().unwrap()["is_playing"].asBool().unwrap()) {
                             Mod::get()->setSavedValue<bool>("spotify-paused-before-play", false);
                         } else {
