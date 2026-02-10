@@ -12,7 +12,7 @@
 	"developer": "MythicalRev",
 	"description": "Pauses spotify when playing",
 	"dependencies": {
-		"geode.node-ids": "1.22.0-beta.1"
+		"geode.node-ids": "1.22.0-beta.2"
 	},
 	"settings": {
 		"title": {
