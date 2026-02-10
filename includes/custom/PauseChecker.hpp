@@ -1,3 +1,5 @@
+#pragma once
+
 #include <Geode/Geode.hpp>
 #include <Geode/utils/web.hpp>
 #include <Geode/utils/async.hpp>
@@ -35,7 +37,7 @@ protected:
             );
         }
 
-        return true;
+        return false;
     }
 public:
     static PauseChecker* checkPause() {

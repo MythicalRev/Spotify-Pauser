@@ -5,6 +5,7 @@
 #include <Geode/utils/web.hpp>
 #include <Geode/utils/async.hpp>
 #include "../custom/PauseChecker.hpp"
+#include "../custom/PlayPauseHandler.hpp"
 
 using namespace geode::prelude;
 
@@ -28,21 +29,6 @@ class $modify(SpotiLevelInfoLayer, LevelInfoLayer) {
     void onPlay(CCObject* sender) {
         LevelInfoLayer::onPlay(sender);
 
-        auto req = web::WebRequest();
-        req.header("Authorization", "Bearer " + m_fields->m_accessToken);
-        req.header("Content-Length", "0");
-        req.header("Content-Type", "application/json");
-
-        m_fields->m_listener.spawn(
-            req.put(m_fields->m_apiEndpoint, Mod::get()),
-            [](web::WebResponse res) {
-                if (res.ok()) {
-                    log::info("Spotify Paused");
-                    return true;
-                }
-
-                return false;
-            }
-        );
+        PlayPauseHandler::pause();
     }
 };

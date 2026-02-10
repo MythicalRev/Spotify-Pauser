@@ -2,6 +2,7 @@
 
 #include <Geode/Geode.hpp>
 #include <Geode/utils/web.hpp>
+#include "../custom/PlayPauseHandler.hpp"
 
 using namespace geode::prelude;
 
@@ -26,22 +27,7 @@ class $modify(SpotiPlayLayer, PlayLayer) {
         PlayLayer::onQuit();
 
         if (!Mod::get()->getSavedValue<bool>("spotify-paused-before-play")) {
-            auto req = web::WebRequest();
-            req.header("Authorization", "Bearer " + m_fields->m_accessToken);
-            req.header("Content-Length", "0");
-            req.header("Content-Type", "application/json");
-
-            m_fields->m_listener.spawn(
-                req.put(m_fields->m_apiEndpoint, Mod::get()),
-                [](web::WebResponse res) {
-                    if (res.ok()) {
-                        log::info("Spotify Resumed");
-                        return true;
-                    }
-
-                    return false;
-                }
-            );
+            PlayPauseHandler::play();
         }
     }
 };
