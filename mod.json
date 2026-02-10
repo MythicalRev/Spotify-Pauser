@@ -43,5 +43,13 @@
 			"default": "",
 			"filter": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-_"
 		}
+	},
+	"tags": [
+		"music",
+		"utility",
+		"editor"
+	],
+	"links": {
+		"source": "https://github.com/MythicalRev/Spotify-Pauser"
 	}
 }
