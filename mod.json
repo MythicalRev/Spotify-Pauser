@@ -1,0 +1,47 @@
+{
+	"geode": "5.0.0-alpha.1",
+	"gd": {
+		"win": "2.2081",
+		"android": "2.2081",
+		"mac": "2.2081",
+		"ios": "2.2081"
+	},
+	"id": "mythicalrev.spotify-pauser",
+	"name": "Spotify Pauser",
+	"version": "v1.0.0",
+	"developer": "MythicalRev",
+	"description": "Pauses spotify when playing",
+	"dependencies": {
+		"geode.node-ids": "1.22.0-beta.1"
+	},
+	"settings": {
+		"title": {
+			"type": "title",
+			"name": "API Settings"
+		},
+		"clid": {
+			"type": "string",
+			"name": "Client ID",
+			"default": "",
+			"filter": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-_"
+		},
+		"clsec": {
+			"type": "string",
+			"name": "Client Secret",
+			"default": "",
+			"filter": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-_"
+		},
+		"reftoken": {
+			"type": "string",
+			"name": "Refresh Token",
+			"default": "",
+			"filter": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-_"
+		},
+		"accesstoken": {
+			"type": "string",
+			"name": "Access Token",
+			"default": "",
+			"filter": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-_"
+		}
+	}
+}
