@@ -1,7 +1,3 @@
-#include "Geode/loader/Log.hpp"
-#include "Geode/loader/Mod.hpp"
-#include "Geode/ui/TextInput.hpp"
-#include "Geode/utils/JsonValidation.hpp"
 #include <Geode/utils/async.hpp>
 #include <Geode/utils/web.hpp>
 #include <Geode/utils/base64.hpp>

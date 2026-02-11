@@ -2,7 +2,7 @@
 
 #include <Geode/Geode.hpp>
 #include <Geode/utils/web.hpp>
-#include "../custom/StartingPopup.hpp"
+#include "../custom/StartingPopup.cpp"
 
 using namespace geode::prelude;
 

@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Geode/Geode.hpp>
-#include "../custom/PauseChecker.hpp"
-#include "../custom/PlayPauseHandler.hpp"
+#include "../custom/PauseChecker.cpp"
+#include "../custom/PlayPauseHandler.cpp"
 
 using namespace geode::prelude;
 
